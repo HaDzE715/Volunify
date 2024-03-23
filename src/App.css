@@ -248,11 +248,26 @@
 .apply-button:hover {
   background-color: #2aa7d7; /* Change color on hover if desired */
 }
-/*---------Progress--------*/
-/*
-/*
-/*---------Progress--------*/
 
+.pending-button{
+  position: absolute; /* Set absolute positioning */
+  bottom: 10px; /* Adjust bottom spacing */
+  right: 10px; /* Adjust right spacing */
+  border-color: #eecd26;
+  border-radius: 12px;
+  background-color: white;
+  color: #eecd26;
+  padding: 10px 105px;
+  cursor: pointer;
+  font-family: 'Open Sans';
+  font-size: 17px;
+  font-weight: 1000;
+  margin-right: 10px;
+}
+/*---------Progress--------*/
+/*
+/*
+/*---------Progress--------*/
 .Progress {
   margin-top: 18px;
   margin-left: 5px;

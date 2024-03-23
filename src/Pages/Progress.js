@@ -14,7 +14,7 @@ function Progress() {
       </p>
 
       <h2>Your current Programs</h2>
-      <div>
+      <div style={{ display: "flex" }}>
         {" "}
         <ProgramProgress />
       </div>

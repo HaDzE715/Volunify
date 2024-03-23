@@ -3,7 +3,6 @@ import UpdatePopUp from "../Modals/UpdatePopUp"; // Import the UpdatePopUp compo
 import "../App.css"; // Import the CSS file for styling
 import Cover from "../Pictures/Cover.png";
 import ProgramPic from "../Pictures/Program.png";
-import FinishProgressModal from "../Modals/FinishProgressModal"; // Updated import
 import ReviewPopup from "../Modals/ReviewPopup"; // Import the ReviewPopup component
 
 function ProgramProgress() {
@@ -24,9 +23,9 @@ function ProgramProgress() {
     setIsPopUpOpen(false);
   };
 
-  const handleCloseFinishModal = () => {
-    setIsFinishModalOpen(false);
-  };
+  // const handleCloseFinishModal = () => {
+  //   setIsFinishModalOpen(false);
+  // };
 
   const handleYesClick = () => {
     console.log("User clicked Yes");

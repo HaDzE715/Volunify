@@ -5,6 +5,7 @@ import ProgramPic from "../Pictures/Program.png";
 
 function Program() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [applicationStatus, setApplicationStatus] = useState("Apply Now!"); // Initial application status
 
   const handleApplyClick = () => {
     setIsApplyModalOpen(true);
@@ -14,6 +15,7 @@ function Program() {
     // Logic to handle apply confirmation
     console.log("Applying...");
     setIsApplyModalOpen(false);
+    setApplicationStatus("Pending..."); // Change application status to "Pending"
   };
 
   const handleCancelClick = () => {
@@ -39,9 +41,13 @@ function Program() {
           <p>📅 24/03/2024 - 15/04/2024</p>
         </div>
         <div>
-          <button className="apply-button" onClick={handleApplyClick}>
-            Apply Now!
-          </button>
+          {applicationStatus === "Apply Now!" ? (
+            <button className="apply-button" onClick={handleApplyClick}>
+              {applicationStatus}
+            </button>
+          ) : (
+            <button className="pending-button">{applicationStatus}</button>
+          )}
         </div>
       </div>
       {isApplyModalOpen && (
