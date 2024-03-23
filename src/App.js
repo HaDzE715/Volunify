@@ -4,6 +4,7 @@ import Sidebar from "./Components/sidebar";
 import Topbar from "./Components/Topbar";
 import Dashboard from "./Pages/Dashboard";
 import Progress from "./Pages/Progress";
+import Individual from "./Pages/Individual";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/progress" element={<Progress />} />
             {/* <Route path="/messages" element={<Messages />} /> */}
-            {/* <Route path="/individual" element={<Individual />} /> */}
+            <Route path="/individual" element={<Individual />} />
           </Routes>
         </div>
       </div>

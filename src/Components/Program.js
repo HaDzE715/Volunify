@@ -2,28 +2,42 @@ import React, { useState } from "react";
 import "../App.css"; // Import the CSS file for styling
 import Cover from "../Pictures/Cover.png";
 import ProgramPic from "../Pictures/Program.png";
+import ProgramDetailsPopup from "../Modals/ProgramDetailsPopup"; // Import the ProgramDetailsPopup component
 
 function Program() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [applicationStatus, setApplicationStatus] = useState("Apply Now!"); // Initial application status
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleApplyClick = () => {
     setIsApplyModalOpen(true);
   };
 
-  const handleApplyConfirmed = () => {
+  const handleApplyConfirmed = (event) => {
     // Logic to handle apply confirmation
     console.log("Applying...");
     setIsApplyModalOpen(false);
     setApplicationStatus("Pending..."); // Change application status to "Pending"
+    event.stopPropagation(); // Stop event propagation
   };
 
   const handleCancelClick = () => {
     setIsApplyModalOpen(false);
   };
 
+  const handleProgramClick = (event) => {
+    // Check if the clicked element has the class "apply-button"
+    if (!event.target.classList.contains("apply-button")) {
+      setIsPopupOpen(true);
+    }
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
-    <div className="program-container">
+    <div className="program-container" onClick={handleProgramClick}>
       <div className="program-image">
         <img src={Cover} alt="Program" />
       </div>
@@ -51,7 +65,7 @@ function Program() {
         </div>
       </div>
       {isApplyModalOpen && (
-        <div className="finish-modal">
+        <div className="finish-modal" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content">
             <p>Are you sure you want to apply?</p>
             <div className="button-container">
@@ -65,6 +79,7 @@ function Program() {
           </div>
         </div>
       )}
+      {isPopupOpen && <ProgramDetailsPopup onClose={handleClosePopup} />}
     </div>
   );
 }

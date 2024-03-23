@@ -158,21 +158,37 @@
   margin-left: 5px;
   font-family: 'Open Sans';
 }
-
 .Dashboard .hey-section {
   display: flex;
   align-items: center;
   font-size: 30px;
   margin-bottom: 10px;
 }
-
 .Dashboard .grey-text {
   color: #888; /* Grey color */
   margin-top: 5px;
 }
-
 .Dashboard h2{
   margin-top: 10px;
+}
+.programs-container {
+  max-height: 400px; /* Set the maximum height for the scrollable container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-top: 20px;
+}
+.Dashboard-programs {
+  display: flex;
+  flex-wrap: wrap; /* Wrap components onto multiple lines */
+}
+.Dashboard-programs > * {
+  width: calc(33.33% - 20px); /* Each component takes up one-third of the container's width with a margin of 20px */
+  margin-right: 20px; /* Add margin between components */
+  margin-bottom: 20px; /* Add margin below components */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.Dashboard-programs > *:nth-child(3n) {
+  margin-right: 0; /* Remove margin for every third component to ensure they fit evenly */
 }
 /*---------Component DESIGN--------*/
 /*
@@ -189,14 +205,12 @@
   background-color: #fff;
   margin-top: 30px;
 }
-
 .program-image img {
   width: 100%;
   height: 150px;
   object-fit: cover;
   overflow: hidden;
 }
-
 .circled-picture {
   position: absolute;
   top: 55%;
@@ -206,20 +220,17 @@
   height: 100px;
   overflow: hidden;
 }
-
 .circled-picture img {
   width: 64px;
   height: 68px;
   object-fit: cover;
   border-radius: 50%;
 }
-
 .program-details {
   flex: 1;
   display: flex;
   padding: 23px;
 }
-
 .program-details h3 {
   color: #a19e9e;
   font-size: 16px;
@@ -244,11 +255,9 @@
   font-size: 17px;
   margin-right: 5px;
 }
-
 .apply-button:hover {
   background-color: #2aa7d7; /* Change color on hover if desired */
 }
-
 .pending-button{
   position: absolute; /* Set absolute positioning */
   bottom: 10px; /* Adjust bottom spacing */
@@ -264,6 +273,120 @@
   font-weight: 1000;
   margin-right: 10px;
 }
+.program-details-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  scrollbar-width: 0px;
+  max-height: 500px;
+  overflow-y: auto;
+  width: 340px;
+  height: 500px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  z-index: 9999; /* Ensure popup appears above other content */
+}
+.popup-header {
+  display:flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cover-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+.profile-image {
+  position: absolute;
+  top: 30%;
+  left: 82%;
+  transform: translate(-50%, -50%);
+  width: 64px; 
+  height: 64px; 
+  border-radius: 50%;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #646464;
+}
+.feedbacks-section {
+  flex: 1;
+  padding: 23px;
+  height: 300px;
+  overflow-y: auto;
+}
+.feedbacks-section h4 {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px; /* Add margin bottom to create space between h4 and feedbacks */
+}
+.feedbacks-section p {
+  margin: 8px 0; /* Adjust spacing between paragraphs */
+  font-size: 12px;
+  font-weight: bold;
+}
+.feedback {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%; /* Set width to 100% */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+.feedback-profile-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+.feedback-profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-info {
+  flex: 1;
+  margin-top: 10px;
+}
+.profile-info h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
+.profile-info p {
+  font-size: 12px;
+  color: #555;
+}
+/* Hide the scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Hide scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Hide scrollbar corner */
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
 /*---------Progress--------*/
 /*
 /*
@@ -393,7 +516,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  height: 150px;
+  height: 140px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -487,4 +610,15 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+/*-------BACKDROP to prevent clicks-----*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 1000; /* Ensure the backdrop is above other elements */
+  pointer-events: auto; /* Enable pointer events to prevent interactions with elements behind it */
 }

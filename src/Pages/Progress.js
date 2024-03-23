@@ -14,9 +14,19 @@ function Progress() {
       </p>
 
       <h2>Your current Programs</h2>
-      <div style={{ display: "flex" }}>
-        {" "}
-        <ProgramProgress />
+      <div className="programs-container">
+        <div className="Dashboard-programs">
+          {" "}
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+          <ProgramProgress />
+        </div>
       </div>
     </div>
   );

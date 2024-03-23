@@ -14,9 +14,18 @@ function Dashboard() {
       </p>
 
       <h2>Available Programs</h2>
-      <div>
-        {" "}
-        <Program></Program>
+      <div className="programs-container">
+        <div className="Dashboard-programs">
+          {" "}
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+          <Program></Program>
+        </div>
       </div>
     </div>
   );

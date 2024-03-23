@@ -23,10 +23,6 @@ function ProgramProgress() {
     setIsPopUpOpen(false);
   };
 
-  // const handleCloseFinishModal = () => {
-  //   setIsFinishModalOpen(false);
-  // };
-
   const handleYesClick = () => {
     console.log("User clicked Yes");
     setIsReviewMode(true);
