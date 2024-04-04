@@ -2,7 +2,7 @@ import React from "react";
 import Cover from "../Pictures/Cover.png";
 import ProgramPic from "../Pictures/Program.png";
 import CloseIcon from "@mui/icons-material/Close";
-import Feedback from "../Components/Feedback";
+import Feedback from "../Components/Volunter-Comps/Feedback";
 import profpic from "../Pictures/me.png";
 
 function ProgramDetailsPopup({ onClose }) {
@@ -43,17 +43,17 @@ function ProgramDetailsPopup({ onClose }) {
         <Feedback
           profileImage={profpic}
           profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
+          feedbackText="Amazing t3ares"
         />
         <Feedback
           profileImage={profpic}
           profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
+          feedbackText="WowWowWow"
         />
         <Feedback
           profileImage={profpic}
           profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
+          feedbackText="Fabtastic bombastic!"
         />
         <Feedback
           profileImage={profpic}

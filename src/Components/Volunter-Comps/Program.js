@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../App.css"; // Import the CSS file for styling
-import Cover from "../Pictures/Cover.png";
-import ProgramPic from "../Pictures/Program.png";
-import ProgramDetailsPopup from "../Modals/ProgramDetailsPopup"; // Import the ProgramDetailsPopup component
+import "../../App.css"; // Import the CSS file for styling
+import Cover from "../../Pictures/Cover.png";
+import ProgramPic from "../../Pictures/Program.png";
+import ProgramDetailsPopup from "../../Modals/ProgramDetailsPopup"; // Import the ProgramDetailsPopup component
 
 function Program() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
@@ -52,7 +52,7 @@ function Program() {
             and employment.
           </p>
           <p>📍 Tel Aviv, Yaffo.</p>
-          <p>📅 24/03/2024 - 15/04/2024</p>
+          <p>📅 24/03/2024 - 15/04/2024 </p>
         </div>
         <div>
           {applicationStatus === "Apply Now!" ? (

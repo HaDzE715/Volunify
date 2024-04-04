@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import ProgramProgress from "../Components/ProgramProgress";
+import ProgramProgress from "../Components/Volunter-Comps/ProgramProgress";
 
 function Progress() {
   return (

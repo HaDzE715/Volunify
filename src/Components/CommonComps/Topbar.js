@@ -1,10 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import NotificationsIcon from "@mui/icons-material/NotificationsOutlined";
 import Avatar from "@mui/material/Avatar";
-import ProfilePic from "../Pictures/me.png";
 
-function Topbar() {
+function Topbar({ username, displayName, profilePic }) {
   return (
     <div className="Topbar">
       <div className="left">
@@ -16,10 +15,10 @@ function Topbar() {
         </div>
         <div className="separator"></div>
         <div className="profile">
-          <Avatar alt="Profile Picture" src={ProfilePic} />
+          <Avatar alt="Profile Picture" src={profilePic} />
           <div className="profile-info">
-            <span className="larger-span">HaDzE711</span>
-            <span className="smaller-span">Hade Bayaa</span>
+            <span className="larger-span">{username}</span>
+            <span className="smaller-span">{displayName}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import Program from "../Components/Program";
+import Program from "../Components/Volunter-Comps/Program";
 
 function Dashboard() {
   return (

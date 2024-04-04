@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import UpdatePopUp from "../Modals/UpdatePopUp"; // Import the UpdatePopUp component
-import "../App.css"; // Import the CSS file for styling
-import Cover from "../Pictures/Cover.png";
-import ProgramPic from "../Pictures/Program.png";
-import ReviewPopup from "../Modals/ReviewPopup"; // Import the ReviewPopup component
+import UpdatePopUp from "../../Modals/UpdatePopUp"; // Import the UpdatePopUp component
+import "../../App.css";
+import Cover from "../../Pictures/Cover.png";
+import ProgramPic from "../../Pictures/Program.png";
+import ReviewPopup from "../../Modals/ReviewPopup"; // Import the ReviewPopup component
 
 function ProgramProgress() {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);

@@ -1,10 +1,13 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import { SidebarData } from "./SidebarData";
-import Logo from "../Pictures/logo.jpg";
+import Logo from "../../Pictures/logo.jpg";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 
-function Sidebar() {
+function Sidebar({ userType }) {
+  const sidebarData =
+    userType === "user1" ? SidebarData.user1 : SidebarData.user2;
+
   return (
     <div className="Sidebar">
       <ul className="SidebarList">
@@ -12,7 +15,7 @@ function Sidebar() {
           <img src={Logo} alt="logo" />
           <h1>Volunify</h1>
         </div>
-        {SidebarData.map((val, key) => {
+        {sidebarData.map((val, key) => {
           return (
             <li
               key={key}
@@ -22,8 +25,8 @@ function Sidebar() {
                 window.location.pathname = val.link;
               }}
             >
-              {" "}
-              <div id="icon">{val.icon}</div> <div id="title">{val.title}</div>
+              <div id="icon">{val.icon}</div>
+              <div id="title">{val.title}</div>
             </li>
           );
         })}

@@ -2,10 +2,10 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #F6F2F2;
+  background-color: #f6f2f2;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -24,14 +24,14 @@
   background-color: #fff;
 }
 
-.SidebarList{
+.SidebarList {
   height: 100%;
   padding: 0;
   width: 223px;
   margin-top: auto;
 }
 
-.SidebarList .row{
+.SidebarList .row {
   width: 220px;
   height: 45px;
   position: relative;
@@ -44,30 +44,30 @@
   display: flex;
   flex-direction: row;
   color: black;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .SidebarList .logout {
   position: absolute;
   bottom: 0;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
-.SidebarList .row:hover{
+.SidebarList .row:hover {
   cursor: pointer;
   background-color: #a8ddf5;
   border-radius: 10px;
 }
 
-.SidebarList #active{
+.SidebarList #active {
   background-color: #a8ddf5;
   border-radius: 10px;
 }
-.row #icon{
+.row #icon {
   flex: 30%;
   display: grid;
   place-items: center;
 }
-.row #title{
+.row #title {
   flex: 70%;
 }
 .logo {
@@ -83,9 +83,9 @@
 }
 
 .logo h1 {
-  margin: 0; 
-  font-size: 32px; 
-  font-family: 'Open Sans';
+  margin: 0;
+  font-size: 32px;
+  font-family: "Open Sans";
 }
 /*------- SideBar Code --------*/
 /*
@@ -93,7 +93,9 @@
 .Topbar {
   top: 20px;
   right: 25px;
-  width: calc(100% - (0.2*223px)); /* Adjust width to leave space for sidebar */
+  width: calc(
+    100% - (0.2 * 223px)
+  ); /* Adjust width to leave space for sidebar */
   height: 50px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
@@ -103,7 +105,7 @@
   border-radius: 20px;
   padding: 0 20px;
   z-index: 1000; /* Ensure it's above other content */
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
 .Topbar .separator {
@@ -156,7 +158,7 @@
 .Dashboard {
   margin-top: 18px;
   margin-left: 5px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .Dashboard .hey-section {
   display: flex;
@@ -168,11 +170,11 @@
   color: #888; /* Grey color */
   margin-top: 5px;
 }
-.Dashboard h2{
+.Dashboard h2 {
   margin-top: 10px;
 }
 .programs-container {
-  max-height: 400px; /* Set the maximum height for the scrollable container */
+  max-height: 65vh; /* Set the maximum height for the scrollable container */
   overflow-y: auto; /* Enable vertical scrolling */
   margin-top: 20px;
 }
@@ -181,14 +183,14 @@
   flex-wrap: wrap; /* Wrap components onto multiple lines */
 }
 .Dashboard-programs > * {
-  width: calc(33.33% - 20px); /* Each component takes up one-third of the container's width with a margin of 20px */
-  margin-right: 20px; /* Add margin between components */
-  margin-bottom: 20px; /* Add margin below components */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: calc(33.33% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .Dashboard-programs > *:nth-child(3n) {
-  margin-right: 0; /* Remove margin for every third component to ensure they fit evenly */
+  margin-right: 20px; /* Remove margin for every third component to ensure they fit evenly */
 }
 /*---------Component DESIGN--------*/
 /*
@@ -247,18 +249,18 @@
   right: 10px; /* Adjust right spacing */
   border: none;
   border-radius: 12px;
-  background-color: #37C0ED;
+  background-color: #37c0ed;
   color: white;
   padding: 10px 105px;
   cursor: pointer;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 17px;
   margin-right: 5px;
 }
 .apply-button:hover {
   background-color: #2aa7d7; /* Change color on hover if desired */
 }
-.pending-button{
+.pending-button {
   position: absolute; /* Set absolute positioning */
   bottom: 10px; /* Adjust bottom spacing */
   right: 10px; /* Adjust right spacing */
@@ -268,7 +270,7 @@
   color: #eecd26;
   padding: 10px 105px;
   cursor: pointer;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 17px;
   font-weight: 1000;
   margin-right: 10px;
@@ -289,7 +291,7 @@
   z-index: 9999; /* Ensure popup appears above other content */
 }
 .popup-header {
-  display:flex;
+  display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -305,8 +307,8 @@
   top: 30%;
   left: 82%;
   transform: translate(-50%, -50%);
-  width: 64px; 
-  height: 64px; 
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 }
 .close-button {
@@ -394,7 +396,7 @@
 .Progress {
   margin-top: 18px;
   margin-left: 5px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
 .Progress .Progress-Title {
@@ -410,7 +412,7 @@
   margin-top: 5px;
 }
 
-.Progress h2{
+.Progress h2 {
   margin-top: 10px;
 }
 
@@ -420,11 +422,11 @@
   right: 10px; /* Adjust right spacing */
   border: none;
   border-radius: 12px;
-  background-color: #37C0ED;
+  background-color: #37c0ed;
   color: white;
   padding: 10px 45px;
   cursor: pointer;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 17px;
   margin-right: 170px;
 }
@@ -436,13 +438,13 @@
   position: absolute; /* Set absolute positioning */
   bottom: 10px; /* Adjust bottom spacing */
   right: 10px; /* Adjust right spacing */
-  border-color: #99D931;
+  border-color: #99d931;
   border-radius: 12px;
   background-color: white;
-  color: #99D931;
+  color: #99d931;
   padding: 8.5px 35px;
   cursor: pointer;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 17px;
   margin-right: 0px;
 }
@@ -468,13 +470,13 @@
 }
 
 .popup-content h2 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #333;
   margin-bottom: 20px;
 }
 
 .popup-content label {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   color: #333;
   margin-bottom: 5px;
@@ -486,7 +488,7 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .popup-content button {
@@ -496,12 +498,12 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   justify-content: space-between;
 }
 
 .popup-content button:first-child {
-  background-color: #37C0ED; /* Apply button color */
+  background-color: #37c0ed; /* Apply button color */
   color: #fff;
 }
 
@@ -537,7 +539,7 @@
 .yes-button,
 .cancel-button {
   padding: 10px 20px;
-  border-color:#d32f2f;
+  border-color: #d32f2f;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -558,11 +560,11 @@
   right: 10px; /* Adjust right spacing */
   border: none;
   border-radius: 12px;
-  background-color: #37C0ED;
+  background-color: #37c0ed;
   color: white;
   padding: 10px 65px;
   cursor: pointer;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 17px;
   margin-right: 45px;
 }
@@ -598,7 +600,7 @@
   width: 80%;
   height: 100px;
   margin-bottom: 20px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   border-radius: 5px;
 }
 .review-textarea::placeholder {
@@ -621,4 +623,71 @@
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
   z-index: 1000; /* Ensure the backdrop is above other elements */
   pointer-events: auto; /* Enable pointer events to prevent interactions with elements behind it */
+}
+/*----------Organization Pages--------------*/
+/*
+/*
+/*----------Dashboard----------*/
+.programs-header {
+  display: flex;
+  align-items: center;
+}
+.program-count {
+  color: #888888;
+  font-size: 18px;
+  margin-left: 6px; /* Adjust margin as needed */
+}
+.programs-box {
+  margin-top: 17px;
+  width: 90%;
+  max-width: 1120px;
+  height: 70vh;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /* Add any other styling as needed */
+}
+
+.programs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.programs-table th,
+.programs-table td {
+  border: none; /* Remove border */
+  padding: 8px;
+}
+
+.programs-table th {
+  background-color: #f0f0f0;
+}
+
+.program-row-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  padding: 10px;
+}
+
+.program-row-container .arrow-icon {
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.program-row-container .program-image-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.program-row-container .program-info-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.program-row-container .program-info-container div {
+  margin-right: 20px; /* Adjust margin between elements */
+}
+#program-name {
+  margin-right: 20px;
 }
