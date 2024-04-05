@@ -10,11 +10,13 @@ import VolunteerProgress from "./Volunteer-Pages/Progress";
 import VolunteerIndividual from "./Volunteer-Pages/Individual";
 
 import OrganizationDashboard from "./Org-Pages/Dashboard";
+import AddProgram from "./Org-Pages/AddProgram";
+
 import ProfilePic1 from "./Pictures/me.png";
 import ProfilePic2 from "./Pictures/Program.png";
 
 function App() {
-  const userType = "user1"; // or "user1" for the other user
+  const userType = "user2"; // or "user1" for the other user
   const userInfo =
     userType === "user1"
       ? {
@@ -47,7 +49,7 @@ function App() {
               <>
                 <Route path="/" element={<OrganizationDashboard />} />
                 <Route path="/dashboard" element={<OrganizationDashboard />} />
-                {/* <Route path="/program" element={<AdminProgress />} /> */}
+                <Route path="/program" element={<AddProgram />} />
                 {/* <Route path="/requests" element={<AdminIndividual />} /> */}
               </>
             )}
