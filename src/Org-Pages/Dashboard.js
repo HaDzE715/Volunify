@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import ProgramTable from "../Components/Org-Comps/ProgramsTable";
+import CollapsibleTable from "../Components/Org-Comps/CollapsibleTable";
 
 function Dashboard() {
   return (
@@ -17,7 +17,7 @@ function Dashboard() {
         <h2>Your Programs</h2>
         <h2 className="program-count">(3)</h2>
       </div>
-      <ProgramTable />
+      <CollapsibleTable />
     </div>
   );
 }

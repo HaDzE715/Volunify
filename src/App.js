@@ -16,7 +16,7 @@ import ProfilePic1 from "./Pictures/me.png";
 import ProfilePic2 from "./Pictures/Program.png";
 
 function App() {
-  const userType = "user2"; // or "user1" for the other user
+  const userType = "user2"; // or "user1/user2" for the other user
   const userInfo =
     userType === "user1"
       ? {
