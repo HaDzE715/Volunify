@@ -1,98 +1,16 @@
 import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import Row from "./ProgramsTable";
+import Requests from "./RequestTable"; // Import the Requests component
 
-const rows = [
-  {
-    name: "Bet Avot",
-    status: "Active",
-    volunteersno: 6.0,
-    location: "Tel-aviv Yafo",
-    daterange: "2024-01-04-2024-30-04",
-    volunteers: [
-      {
-        name: "Hade Bayaa",
-        status: "Active",
-        availability: "MON-FRI",
-        lastreport: "2024-02-02",
-        startdate: "2024-01-04",
-        enddate: "2024-30-04",
-        reports: [
-          {
-            date: "2024-01-01",
-            content: "Well today I liked how the new culture is gathering",
-          },
-          {
-            date: "2024-01-15",
-            content:
-              "I like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyoneI like it alot how the summer kisses the sun and the sun is not kissing anyone",
-          },
-          {
-            date: "2024-01-21",
-            content: "Well Thats good!",
-          },
-        ],
-      },
-      {
-        name: "John Doe",
-        status: "Inactive",
-        availability: "SUN-TUE",
-        lastreport: "2024-02-02",
-        startdate: "2024-02-01",
-        enddate: "2024-02-29",
-      },
-      {
-        name: "John Doe",
-        status: "Inactive",
-        availability: "MON-WED",
-        lastreport: "2024-02-02",
-        startdate: "2024-02-01",
-        enddate: "2024-02-29",
-      },
-    ],
-  },
-  {
-    name: "TESTTEST",
-    status: "Active",
-    volunteersno: 6.0,
-    location: "Tel-aviv Yafo",
-    daterange: "2024-01-04-2024-30-04",
-    volunteers: [
-      {
-        name: "Hade Bayaa",
-        status: "Active",
-        availability: "MON-FRI",
-        lastreport: "2024-02-02",
-        startdate: "2024-01-04",
-        enddate: "2024-30-04",
-      },
-      {
-        name: "John Doe",
-        status: "Inactive",
-        availability: "SUN-TUE",
-        lastreport: "2024-02-02",
-        startdate: "2024-02-01",
-        enddate: "2024-02-29",
-      },
-      {
-        name: "John Doe",
-        status: "Inactive",
-        availability: "MON-WED",
-        lastreport: "2024-02-02",
-        startdate: "2024-02-01",
-        enddate: "2024-02-29",
-      },
-    ],
-  },
-];
-
-export default function CollapsibleTable() {
+export default function CollapsibleTable({ data, type }) {
+  console.log("COLData:", data);
   return (
     <TableContainer
       component={Paper}
@@ -126,8 +44,8 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         <TableBody sx={{ overflowY: "auto" }}>
-          {rows.map((row, index) => (
-            <Row key={index} data={row} />
+          {data.map((row, index) => (
+            <Row key={index} data={row} type={0} />
           ))}
         </TableBody>
       </Table>

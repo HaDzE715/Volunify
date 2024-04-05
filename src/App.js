@@ -11,6 +11,7 @@ import VolunteerIndividual from "./Volunteer-Pages/Individual";
 
 import OrganizationDashboard from "./Org-Pages/Dashboard";
 import AddProgram from "./Org-Pages/AddProgram";
+import Requests from "./Org-Pages/Requests";
 
 import ProfilePic1 from "./Pictures/me.png";
 import ProfilePic2 from "./Pictures/Program.png";
@@ -50,7 +51,7 @@ function App() {
                 <Route path="/" element={<OrganizationDashboard />} />
                 <Route path="/dashboard" element={<OrganizationDashboard />} />
                 <Route path="/program" element={<AddProgram />} />
-                {/* <Route path="/requests" element={<AdminIndividual />} /> */}
+                <Route path="/requests" element={<Requests />} />
               </>
             )}
           </Routes>

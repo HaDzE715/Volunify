@@ -7,27 +7,33 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 
 function VolunteerTable({ volunteers, onVolunteerClick }) {
+  console.log("VolnData:", volunteers);
   return (
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell />
           <TableCell align="left" sx={{ fontWeight: "bold" }}>
             Name
           </TableCell>
           <TableCell align="left" sx={{ fontWeight: "bold" }}>
             Status
           </TableCell>
-          <TableCell align="left" sx={{ fontWeight: "bold" }}>
+          <TableCell align="left" colSpan={1} sx={{ fontWeight: "bold" }}>
             Availability
           </TableCell>
-          <TableCell align="left" sx={{ fontWeight: "bold" }}>
+          <TableCell align="left" colSpan={1} sx={{ fontWeight: "bold" }}>
             Last Report
           </TableCell>
-          <TableCell align="left" sx={{ fontWeight: "bold" }}>
+          <TableCell
+            align="left"
+            sx={{ paddingRight: "30px", fontWeight: "bold" }}
+          >
             Start Date
           </TableCell>
-          <TableCell align="left" sx={{ fontWeight: "bold" }}>
+          <TableCell
+            align="left"
+            sx={{ paddingRight: "55px", fontWeight: "bold" }}
+          >
             End Date
           </TableCell>
         </TableRow>
@@ -39,7 +45,6 @@ function VolunteerTable({ volunteers, onVolunteerClick }) {
             hover
             onClick={() => onVolunteerClick(volunteer)}
           >
-            <TableCell />
             <TableCell>{volunteer.name}</TableCell>
             <TableCell>{volunteer.status}</TableCell>
             <TableCell>{volunteer.availability}</TableCell>
@@ -55,7 +60,6 @@ function VolunteerTable({ volunteers, onVolunteerClick }) {
 
 VolunteerTable.propTypes = {
   volunteers: PropTypes.array.isRequired,
-  onVolunteerClick: PropTypes.func.isRequired,
 };
 
 export default VolunteerTable;

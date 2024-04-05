@@ -10,8 +10,9 @@ import Collapse from "@mui/material/Collapse";
 import Typography from "@mui/material/Typography";
 import VolunteerTable from "./VolunteerTable"; // Import updated VolunteerTable component
 import ReportModal from "../../Modals/ReportsModal";
+import RequestsTable from "./RequestTable";
 
-function Row({ data }) {
+function Row({ data, type }) {
   const { name, status, volunteersno, location, daterange, volunteers } = data;
   const [open, setOpen] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
@@ -21,6 +22,7 @@ function Row({ data }) {
     setSelectedVolunteer(volunteer);
     setReportModalOpen(true);
   };
+  console.log("RowData:", volunteers);
 
   return (
     <React.Fragment>
@@ -84,6 +86,7 @@ Row.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  type: PropTypes.number.isRequired, // Added prop type
 };
 
 export default Row;
