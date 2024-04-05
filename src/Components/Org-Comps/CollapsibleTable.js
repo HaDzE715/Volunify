@@ -7,7 +7,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import Row from "./ProgramsTable";
-import Requests from "./RequestTable"; // Import the Requests component
 
 export default function CollapsibleTable({ data, type }) {
   console.log("COLData:", data);

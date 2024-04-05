@@ -14,8 +14,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
-
 
 function CollapsibleProgramsTable({ data }) {
   return (
@@ -116,18 +114,8 @@ Row.propTypes = {
     ).isRequired,
   }).isRequired,
 };
-const useStyles = makeStyles((theme) => ({
-  actionButtons: {
-    "& > *": {
-      marginRight: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-    },
-  },
-}));
 
 function VolunteerTable({ volunteers }) {
-  const classes = useStyles();
-
   return (
     <Table>
       <TableHead>
@@ -165,14 +153,34 @@ function VolunteerTable({ volunteers }) {
             <TableCell>{volunteer.sex}</TableCell>
             <TableCell>{volunteer.dateapplied}</TableCell>
             <TableCell>
-              <div className={classes.actionButtons}>
-                <Button variant="contained" color="primary">
-                  Accept
-                </Button>
-                <Button variant="contained" color="secondary">
-                  Reject
-                </Button>
-              </div>
+              <Button
+                style={{
+                  marginRight: 8,
+                  backgroundColor: "green",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                  },
+                }}
+                variant="contained"
+              >
+                Accept
+              </Button>
+              <Button
+                style={{
+                  borderColor: "red",
+                  color: "red",
+                  "&:hover": {
+                    borderColor: "darkred",
+                    color: "darkred",
+                    backgroundColor: "transparent",
+                  },
+                }}
+                variant="outlined"
+              >
+                Reject
+              </Button>
             </TableCell>
           </TableRow>
         ))}
