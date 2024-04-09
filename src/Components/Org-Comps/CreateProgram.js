@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { FormControl, Input, Select, styled } from "@mui/material";
+import AuthService from "../../AuthService";
+import TutorialDataService from "../../Service";
+const token = AuthService.getToken("authToken");
 
 const StyledFormControl = styled(FormControl)`
   margin-bottom: 20px;
@@ -68,8 +71,8 @@ const FormContainer = styled("div")`
   padding: 30px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   margin-top: 26px;
-  width: 70%;
-  height: 75%;
+  width: 80%;
+  height: 85%;
 `;
 
 const SpaceBetweenInputs = styled("div")`
@@ -98,14 +101,55 @@ function CreateProgramForm() {
   const [endDateYear, setEndDateYear] = useState("");
 
   const [selectedFile, setSelectedFile] = useState(null);
+  const [programName, setProgramName] = useState("");
+
+  const [description, setProgramDescription] = useState(null);
+  const [maxVolunteer, setVolunteers] = useState("");
+  const [address, setLocation] = useState("");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleProgramNameChange = (event) => {
+    setProgramName(event.target.value);
+  };
+
+  const handleProgramDescriptionChange = (event) => {
+    setProgramDescription(event.target.value);
+  };
+
+  const handleVolunteersChange = (event) => {
+    setVolunteers(event.target.value);
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+
+    const formData = new FormData();
+    formData.append("programName", programName);
+    formData.append("selectedFile", selectedFile);
+    formData.append(
+      "startDate",
+      `${startDateYear}-${startDateMonth}-${startDateDay}`
+    );
+    formData.append("endDate", `${endDateYear}-${endDateMonth}-${endDateDay}`);
+    formData.append("description", description);
+    formData.append("maxVolunteer", maxVolunteer);
+    formData.append("address", address);
+
+    try {
+      const token = AuthService.getToken("authToken");
+      const response = await TutorialDataService.createProgram(formData, token);
+      console.log("Program created successfully:", response.data);
+      window.location.href = "/dashboard";
+    } catch (error) {
+      console.error("Error creating program:", error);
+    }
   };
 
   const handleStartDateMonthChange = (event) => {
@@ -173,13 +217,27 @@ function CreateProgramForm() {
         <div style={{ display: "flex", gap: "20px" }}>
           <SpaceBetweenInputs>
             <StyledFormControl>
+              <FormLabel htmlFor="programName">Program Name</FormLabel>
+              <Input
+                id="programName"
+                placeholder="Enter program name"
+                value={programName}
+                onChange={handleProgramNameChange}
+                required
+              />
+            </StyledFormControl>
+            {/* Other input fields */}
+          </SpaceBetweenInputs>
+          <SpaceBetweenInputs>
+            <StyledFormControl>
               <FormLabel htmlFor="programDescription">
                 Program Description
               </FormLabel>
               <Input
                 id="programDescription"
-                placeholder="Max 10 characters"
-                inputProps={{ maxLength: 10 }} // Set maxLength here
+                placeholder="Max 100 characters"
+                inputProps={{ maxLength: 100 }} // Set maxLength here
+                onChange={handleProgramDescriptionChange}
                 required
               />
             </StyledFormControl>
@@ -205,6 +263,7 @@ function CreateProgramForm() {
               type="number"
               required
               min={1}
+              onChange={handleVolunteersChange}
               onBlur={(e) => {
                 if (e.target.value < 1) {
                   e.target.setCustomValidity(
@@ -218,7 +277,12 @@ function CreateProgramForm() {
           </StyledFormControl>
           <StyledFormControl>
             <FormLabel htmlFor="location">Location</FormLabel>
-            <Input id="location" placeholder="Enter location" required />
+            <Input
+              id="location"
+              placeholder="Enter location"
+              onChange={handleLocationChange}
+              required
+            />
           </StyledFormControl>
         </SpaceBetweenInputs>
         <div className="date-container">

@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import ProgramProgress from "../Components/Volunter-Comps/ProgramProgress";
+// new
+import AuthService from "../AuthService";
+import TutorialDataService from "../Service";
 
 function Progress() {
+  const [programs, setPrograms] = useState([]);
+
+  useEffect(() => {
+    async function fetchPrograms() {
+      const token = AuthService.getToken("authToken");
+      const programsData = await TutorialDataService.getProgressPrograms(token);
+      setPrograms(programsData.data);
+    }
+
+    fetchPrograms();
+  }, [programs]);
+
   return (
     <div className="Progress">
       <div className="Progress-Title">
@@ -16,16 +31,10 @@ function Progress() {
       <h2>Your current Programs</h2>
       <div className="programs-container">
         <div className="Dashboard-programs">
-          {" "}
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
-          <ProgramProgress />
+          {programs &&
+            programs.map((program) => (
+              <ProgramProgress key={program._id} program={program} />
+            ))}
         </div>
       </div>
     </div>

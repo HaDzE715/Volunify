@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../App.css";
 import { SidebarData } from "./SidebarData";
 import Logo from "../../Pictures/logo.jpg";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 
-function Sidebar({ userType }) {
-  const sidebarData =
-    userType === "user1" ? SidebarData.user1 : SidebarData.user2;
+function Sidebar({ isLoggedIn, userType, handleLogout }) {
+  const [selectedOption, setSelectedOption] = useState("");
+  const sidebarData = isLoggedIn ? (userType === "user1" ? SidebarData.user1 : SidebarData.user2) : [];
+  const navigate = useNavigate();
+
+  const handleNavigation = (link) => {
+    setSelectedOption(link);
+    navigate(link);
+  };
 
   return (
     <div className="Sidebar">
@@ -19,28 +26,22 @@ function Sidebar({ userType }) {
           return (
             <li
               key={key}
-              className="row"
-              id={window.location.pathname === val.link ? "active" : ""}
-              onClick={() => {
-                window.location.pathname = val.link;
-              }}
+              className={`row ${selectedOption === val.link ? "selected" : ""}`}
+              onClick={() => handleNavigation(val.link)}
             >
               <div id="icon">{val.icon}</div>
               <div id="title">{val.title}</div>
             </li>
           );
         })}
-        <li
-          className="row logout"
-          onClick={() => {
-            window.location.pathname = "/logout";
-          }}
-        >
-          <div id="icon">
-            <LogoutIcon />
-          </div>
-          <div id="title">Logout</div>
-        </li>
+        {isLoggedIn && (
+          <li className="row logout" onClick={handleLogout}>
+            <div id="icon">
+              <LogoutIcon />
+            </div>
+            <div id="title">Logout</div>
+          </li>
+        )}
       </ul>
     </div>
   );

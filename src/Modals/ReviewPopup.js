@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import "../App.css"; // Import the CSS file for styling
 import ProfilePicture from "../Pictures/Program.png"; // Import the profile picture
+import AuthService from "../AuthService";
+import TutorialDataService from "../Service";
 
-function ReviewPopup({ onClose }) {
+function ReviewPopup(props) {
   const [reviewText, setReviewText] = useState(""); // State to track the review text
+  const { onClose, porgram_id } = props;
 
   const handleInputChange = (event) => {
     setReviewText(event.target.value); // Update the review text state
   };
 
-  const handleSubmit = () => {
-    // Send the review text to the backend
+  const handleSubmit = async () => {
+    const token = AuthService.getToken("authToken");
     console.log("Review submitted:", reviewText);
-    // Close the popup
+    const reportRes = await TutorialDataService.finishProgram(token,porgram_id,reviewText);
+    console.log(reportRes);
     onClose();
   };
 
