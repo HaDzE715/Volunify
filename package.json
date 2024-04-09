@@ -17,7 +17,7 @@
     "axios": "^1.6.8",
     "framer-motion": "^11.0.25",
     "js-cookie": "^3.0.5",
-    "react": "^18.2.0",
+    "react": "^17.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
@@ -28,7 +28,6 @@
     "zustand": "^4.5.2"
   },
   "scripts": {
-    "preinstall": "npm install --force",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
