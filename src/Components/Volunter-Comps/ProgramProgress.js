@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UpdatePopUp from "../../Modals/UpdatePopUp"; // Import the UpdatePopUp component
 import "../../App.css";
-import Cover from "../../Pictures/Cover.png";
-import ProgramPic from "../../Pictures/Program.png";
+
 import ReviewPopup from "../../Modals/ReviewPopup"; // Import the ReviewPopup component
 
-function ProgramProgress() {
+function ProgramProgress(props) {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [isFinishModalOpen, setIsFinishModalOpen] = useState(false);
   const [isReviewMode, setIsReviewMode] = useState(false);
   const [isReviewPopupOpen, setIsReviewPopupOpen] = useState(false);
+  const [programData, setProgramData] = useState({});
+  const [imageData, setImageData] = useState("");
+  const { program } = props;
+  const img = program.image;
+  const data = program.image.image.data;
+
+  useEffect(() => {
+    if (img && data) {
+      const base64String = btoa(
+        data.reduce((data, byte) => data + String.fromCharCode(byte), "")
+      );
+      setImageData(`data:${program.image.contentType};base64,${base64String}`);
+    }
+  }, [program.image]);
+
+  useEffect(() => {
+    setProgramData(program);
+  }, [program]);
 
   const handleUpdateClick = () => {
     setIsPopUpOpen(true);
@@ -45,20 +62,15 @@ function ProgramProgress() {
   return (
     <div className="program-container">
       <div className="program-image">
-        <img src={Cover} alt="Program" />
-      </div>
-      <div className="circled-picture">
-        <img src={ProgramPic} alt="Circled" />
+        {imageData && <img src={imageData} alt="Program" />}
       </div>
       <div className="program-details">
         <div className="program-info">
-          <h3>Aluma</h3>
-          <p>
-            Aluma helps youth navigate choices between army service, education,
-            and employment.
-          </p>
-          <p>📍 Tel Aviv, Yaffo.</p>
-          <p>📅 24/03/2024 - 15/04/2024</p>
+          <h3>{programData.name}</h3>
+          <p>{programData.description}</p>
+          <p>📍 {programData.address}</p>
+          <p>📅 {programData.startDate}</p>
+          <p>📅 {programData.endDate}</p>
         </div>
         <div>
           {isReviewMode ? (
@@ -77,7 +89,9 @@ function ProgramProgress() {
           )}
         </div>
       </div>
-      {isPopUpOpen && <UpdatePopUp onClose={handleClosePopUp} />}
+      {isPopUpOpen && (
+        <UpdatePopUp onClose={handleClosePopUp} porgram_id={programData._id} />
+      )}
       {isFinishModalOpen && (
         <div className="finish-modal">
           <div className="modal-content">
@@ -93,7 +107,12 @@ function ProgramProgress() {
           </div>
         </div>
       )}
-      {isReviewPopupOpen && <ReviewPopup onClose={handleCloseReviewPopup} />}
+      {isReviewPopupOpen && (
+        <ReviewPopup
+          onClose={handleCloseReviewPopup}
+          porgram_id={programData._id}
+        />
+      )}
     </div>
   );
 }

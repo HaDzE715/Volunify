@@ -21,7 +21,7 @@ function Row({ data, type }) {
     setSelectedVolunteer(volunteer);
     setReportModalOpen(true);
   };
-  console.log("RowData:", volunteers);
+  // console.log("RowData:", volunteers);
 
   return (
     <React.Fragment>
@@ -69,23 +69,22 @@ function Row({ data, type }) {
 
 Row.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    volunteersno: PropTypes.number.isRequired,
-    daterange: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    status: PropTypes.string,
+    location: PropTypes.string,
+    volunteersno: PropTypes.number,
+    daterange: PropTypes.string,
     volunteers: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
-        availability: PropTypes.string.isRequired,
-        lastreport: PropTypes.string.isRequired,
-        startdate: PropTypes.string.isRequired,
-        enddate: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        status: PropTypes.string,
+        availability: PropTypes.arrayOf(PropTypes.string), 
+        location: PropTypes.string,
+        skils: PropTypes.arrayOf(PropTypes.string),
       })
     ).isRequired,
   }).isRequired,
-  type: PropTypes.number.isRequired, // Added prop type
+  type: PropTypes.number.isRequired,
 };
 
 export default Row;

@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Row from "./ProgramsTable";
 
 export default function CollapsibleTable({ data, type }) {
-  console.log("COLData:", data);
+  // console.log("COLData:", data);
   return (
     <TableContainer
       component={Paper}

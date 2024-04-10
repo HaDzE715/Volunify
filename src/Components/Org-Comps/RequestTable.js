@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,8 +14,18 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import AuthService from "../../AuthService";
+import TutorialDataService from "../../Service";
+
+let table;
 
 function CollapsibleProgramsTable({ data }) {
+  const [tableData, setTableData] = useState([]);
+  table = tableData;
+  useEffect(() => {
+    setTableData(data);
+  }, [data]);
+
   return (
     <TableContainer
       component={Paper}
@@ -50,7 +60,7 @@ function CollapsibleProgramsTable({ data }) {
         </TableHead>
         <TableBody sx={{ overflowY: "auto" }}>
           {data.map((row, index) => (
-            <Row key={index} data={row} />
+            <Row key={index} data={row} index={index} />
           ))}
         </TableBody>
       </Table>
@@ -58,8 +68,9 @@ function CollapsibleProgramsTable({ data }) {
   );
 }
 
-function Row({ data }) {
-  const { name, status, volunteersno, location, daterange, volunteers } = data;
+function Row({ data, index }) {
+  const { id, name, status, volunteersno, location, daterange, volunteers } =
+    data;
   const [open, setOpen] = useState(false);
 
   return (
@@ -89,7 +100,11 @@ function Row({ data }) {
               <Typography variant="h6" gutterBottom component="div">
                 Requests
               </Typography>
-              <VolunteerTable volunteers={volunteers} />
+              <VolunteerTable
+                programId={id}
+                programIndex={index}
+                volunteers={volunteers}
+              />
             </Box>
           </Collapse>
         </TableCell>
@@ -100,22 +115,46 @@ function Row({ data }) {
 
 Row.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    volunteersno: PropTypes.number.isRequired,
-    daterange: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    status: PropTypes.string,
+    location: PropTypes.string,
+    volunteersno: PropTypes.number,
+    daterange: PropTypes.string,
     volunteers: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
-        availability: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        name: PropTypes.string,
+        status: PropTypes.string,
+        availability: PropTypes.array,
+        sex: PropTypes.string,
+        age: PropTypes.string,
       })
-    ).isRequired,
-  }).isRequired,
+    ),
+  }),
+  index: PropTypes.number,
 };
 
-function VolunteerTable({ volunteers }) {
+function VolunteerTable({ programId, programIndex, volunteers }) {
+  const handleAccept = async (volunteerId, volunteerIndex) => {
+    const token = AuthService.getToken("authToken");
+    const acceptResponse = await TutorialDataService.acceptVolunteer(
+      token,
+      table[programIndex].programId,
+      table[programIndex].volunteers[volunteerIndex].volunteerId
+    );
+  };
+
+  const handleReject = async (volunteerId, volunteerIndex) => {
+    const token = AuthService.getToken("authToken");
+
+    const acceptResponse = await TutorialDataService.rejectVolunteer(
+      token,
+      table[programIndex].programId,
+      table[programIndex].volunteers[volunteerIndex].volunteerId
+    );
+  };
+
   return (
     <Table>
       <TableHead>
@@ -136,7 +175,7 @@ function VolunteerTable({ volunteers }) {
             Sex
           </TableCell>
           <TableCell align="left" sx={{ fontWeight: "bold" }}>
-            Date Applied
+            Skilz
           </TableCell>
           <TableCell align="left" sx={{ fontWeight: "bold" }}>
             Actions
@@ -151,9 +190,10 @@ function VolunteerTable({ volunteers }) {
             <TableCell>{volunteer.availability}</TableCell>
             <TableCell>{volunteer.age}</TableCell>
             <TableCell>{volunteer.sex}</TableCell>
-            <TableCell>{volunteer.dateapplied}</TableCell>
+            <TableCell>{volunteer.skils}</TableCell>
             <TableCell>
               <Button
+                onClick={() => handleAccept(volunteer.id, index)} // Pass volunteer ID and index to handleAccept
                 style={{
                   marginRight: 8,
                   backgroundColor: "green",
@@ -168,6 +208,7 @@ function VolunteerTable({ volunteers }) {
                 Accept
               </Button>
               <Button
+                onClick={() => handleReject(volunteer.id, index)}
                 style={{
                   borderColor: "red",
                   color: "red",
@@ -190,7 +231,9 @@ function VolunteerTable({ volunteers }) {
 }
 
 VolunteerTable.propTypes = {
-  volunteers: PropTypes.array.isRequired,
+  programId: PropTypes.string,
+  programIndex: PropTypes.number,
+  volunteers: PropTypes.array,
 };
 
 export default CollapsibleProgramsTable;

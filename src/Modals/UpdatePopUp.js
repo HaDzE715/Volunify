@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import AuthService from "../AuthService";
+import TutorialDataService from "../Service";
 
-function UpdatePopUp({ onClose }) {
+function UpdatePopUp(props) {
   const [arrivalDate, setArrivalDate] = useState("");
   const [whatIDid, setWhatIDid] = useState("");
+  const { onClose, porgram_id } = props;
 
-  const handleUpdateArrival = () => {
-    // Logic to handle updating arrival details
+  const handleUpdateArrival = async () => {
+    const token = AuthService.getToken("authToken");
     console.log("Updating arrival details:", arrivalDate, whatIDid);
-    // You can add further logic here, such as sending the updated details to the server
-    // and closing the pop-up after successful update
+    await TutorialDataService.createReport(
+      token,
+      whatIDid,
+      porgram_id,
+      arrivalDate
+    );
     onClose();
   };
 
@@ -29,7 +36,10 @@ function UpdatePopUp({ onClose }) {
             />
           </div>
           <div>
-            <label htmlFor="whatIDid" style={{ display: "block" }}>
+            <label
+              htmlFor="whatIDid"
+              style={{ display: "block", marginBottom: "10px" }}
+            >
               My Progress for today:
             </label>
             <textarea

@@ -7,7 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 
 function VolunteerTable({ volunteers, onVolunteerClick }) {
-  console.log("VolnData:", volunteers);
+  // console.log("VolnData:", volunteers);
   return (
     <Table>
       <TableHead>
@@ -21,20 +21,17 @@ function VolunteerTable({ volunteers, onVolunteerClick }) {
           <TableCell align="left" colSpan={1} sx={{ fontWeight: "bold" }}>
             Availability
           </TableCell>
-          <TableCell align="left" colSpan={1} sx={{ fontWeight: "bold" }}>
-            Last Report
-          </TableCell>
           <TableCell
             align="left"
             sx={{ paddingRight: "30px", fontWeight: "bold" }}
           >
-            Start Date
+            Location
           </TableCell>
           <TableCell
             align="left"
             sx={{ paddingRight: "55px", fontWeight: "bold" }}
           >
-            End Date
+            Skils
           </TableCell>
         </TableRow>
       </TableHead>
@@ -48,9 +45,8 @@ function VolunteerTable({ volunteers, onVolunteerClick }) {
             <TableCell>{volunteer.name}</TableCell>
             <TableCell>{volunteer.status}</TableCell>
             <TableCell>{volunteer.availability}</TableCell>
-            <TableCell>{volunteer.lastreport}</TableCell>
-            <TableCell>{volunteer.startdate}</TableCell>
-            <TableCell>{volunteer.enddate}</TableCell>
+            <TableCell>{volunteer.location}</TableCell>
+            <TableCell>{volunteer.skils}</TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -1,75 +1,82 @@
-import React from "react";
-import Cover from "../Pictures/Cover.png";
-import ProgramPic from "../Pictures/Program.png";
+import React, { useEffect, useState } from "react";
+
 import CloseIcon from "@mui/icons-material/Close";
 import Feedback from "../Components/Volunter-Comps/Feedback";
 import profpic from "../Pictures/me.png";
+import AuthService from "../AuthService";
+import TutorialDataService from "../Service";
 
-function ProgramDetailsPopup({ onClose }) {
+function ProgramDetailsPopup(props) {
+  const [program, setProgram] = useState({});
+  const { onClose, data, imageData } = props;
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setProgram(data);
+  }, [data]);
+
+  useEffect(() => {
+    async function fetchFeedbacks() {
+      setLoading(true);
+      try {
+        const token = AuthService.getToken("authToken");
+        const response = await TutorialDataService.getFeedbacks(
+          token,
+          program._id
+        );
+        setFeedbacks(response.data);
+      } catch (error) {
+        console.error("Error fetching feedbacks:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (program._id) {
+      fetchFeedbacks();
+    }
+  }, [program._id]);
+
   const handleClose = (event) => {
-    event.stopPropagation(); // Prevent event from bubbling up to parent components
-    onClose(); // Call the onClose function passed from the parent component
+    event.stopPropagation();
+    onClose();
   };
 
   return (
     <div className="program-details-popup">
       <div className="popup-header">
-        <img className="cover-image" src={Cover} alt="Cover" />
-        <img className="profile-image" src={ProgramPic} alt="Profile" />
+        {imageData && (
+          <img className="cover-image" src={imageData} alt="Program" />
+        )}
       </div>
       <div className="close-button" onClick={handleClose}>
         <CloseIcon />
       </div>
       <div className="program-details">
         <div className="program-info">
-          <h3>Aluma</h3>
-          <p>
-            Aluma helps youth navigate choices between army service, education,
-            and employment.
-          </p>
-          <p>📍 Tel Aviv, Yaffo.</p>
-          <p>📅 24/03/2024 - 15/04/2024</p>
-          <p>🧔 Maximum volunteers - 20</p>
-          <p>⏰ Mondays and Fridays</p>
+          <h3>{program.name}</h3>
+          <p>{program.description}</p>
+          <p>📍 {program.address}</p>
+          <p>📅 {program.startDate}</p>
+          <p>📅 {program.endDate}</p>
+          <p>🧔 {program.maxVolunteer}</p>
         </div>
       </div>
       <div className="feedbacks-section">
         <h4>Feedbacks:</h4>
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Amazing t3ares"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="WowWowWow"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Fabtastic bombastic!"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
-        />
-        <Feedback
-          profileImage={profpic}
-          profileName="Hade Bayaa"
-          feedbackText="Great program I learned alot!"
-        />
+        {loading ? (
+          <p>Loading feedbacks...</p>
+        ) : (
+          feedbacks.map((feedback) => (
+            <Feedback
+              key={feedback._id}
+              profileImage={feedback.image || profpic}
+              profileName={feedback.name || "Anonymous"}
+              feedbackText={feedback.content}
+            />
+          ))
+        )}
       </div>
     </div>
   );
